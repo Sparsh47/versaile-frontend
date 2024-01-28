@@ -48,11 +48,6 @@ const OpenAi = ({ text, save }) => {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const openai = new OpenAI({
-  //   apiKey: process.env.API_KEY,
-  //   dangerouslyAllowBrowser: true,
-  // });
-
   const FetchAI = async (text: String) => {
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${text}\n${userInput}` }],

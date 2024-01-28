@@ -76,7 +76,6 @@ const TextEditor = ({ params }) => {
 
     socket.once("load-document", (document) => {
       quill.setContents(document);
-      quill.enable();
     });
 
     socket.emit("get-document", id);
@@ -138,7 +137,6 @@ const TextEditor = ({ params }) => {
         },
       });
       editorRef.current = q;
-      q.disable();
       q.setText("Loading...");
       setQuill(q);
     }

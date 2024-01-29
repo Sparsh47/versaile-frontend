@@ -17,12 +17,6 @@ export default function Home() {
 
   return (
     <>
-      <Image
-        src={line}
-        alt="underline"
-        width={370}
-        className="absolute top-[320px] right-[600px] z-[-1]"
-      />
       <div
         className="absolute w-[800px] h-[800px] bg-[#7752FE] rounded-[50%] top-[-300px] left-[-200px] z-[-20]"
         style={{ filter: "blur(150px)" }}
@@ -44,10 +38,21 @@ export default function Home() {
           <div className="text-8xl font-black text-center">
             Make Documents.
             <br />
-            Create Impact.
+            <span className="flex justify-center">
+              Create&nbsp;
+              <span className="flex flex-col items-center">
+                Impact.
+                <Image
+                  src={line}
+                  alt="underline"
+                  width={370}
+                  className="-mt-12 z-[-1]"
+                />
+              </span>
+            </span>
           </div>
           <div
-            className="text-center mt-10 font-medium"
+            className="text-center -mt-5 font-medium"
             style={{ fontSize: "22px", lineHeight: "28px" }}
           >
             Collaborate Effortlessly, Create Together: Your Words, Supercharged
@@ -65,19 +70,21 @@ export default function Home() {
           >
             New Doc
           </Button>
-          <div className="flex w-full items-center space-x-2">
-            <Input
+          <div
+            className="flex w-[30rem] items-center space-x-2 rounded-[100px]  border border-gray-500 pr-[5px]"
+            style={{
+              boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <input
               type="url"
               placeholder="Your link"
-              className="h-[50px] rounded-[100px] w-[400px] border border-gray-500"
+              className="h-[50px] w-full outline-none border-none pl-5 bg-transparent"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              style={{
-                boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.2)",
-              }}
             />
             <Button
-              className="absolute right-[680px] py-5 px-8 h-[40px] rounded-[100px] font-medium text-md"
+              className="py-5 px-8 h-[40px] rounded-[100px] font-medium text-md"
               type="submit"
               onClick={() => router.push(url)}
             >
@@ -88,7 +95,7 @@ export default function Home() {
         <Image
           src={hero}
           alt="hero-image"
-          className="w-[80vw] rounded-[20px] shadow-xl border border-gray-200"
+          className="w-[100rem] rounded-[20px] shadow-xl border border-gray-200"
           style={{
             boxShadow: "0 6px 20px rgba(0, 0, 0, 0.3)",
           }}

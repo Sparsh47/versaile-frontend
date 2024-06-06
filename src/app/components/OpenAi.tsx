@@ -20,7 +20,7 @@ import OpenAI from "openai";
 import ReactMarkdown from "react-markdown";
 import { useState } from "react";
 import Options from "./Options";
-import { openai } from "./OpenAIConfig";
+import { conversation, openai } from "./OpenAIConfig";
 
 const CopyToClipboard = (data: any) => {
   navigator.clipboard.writeText(data);
@@ -49,12 +49,14 @@ const OpenAi = ({ text, save }) => {
   const [loading, setLoading] = useState(false);
 
   const FetchAI = async (text: String) => {
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${text}\n${userInput}` }],
-      model: "gpt-3.5-turbo",
-    });
+    // const completion = await openai.chat.completions.create({
+    //   messages: [{ role: "user", content: `${text}\n${userInput}` }],
+    //   model: "gpt-3.5-turbo",
+    // });
+    const message = `${text}\n${userInput}`;
+    const completion = await conversation(message);
 
-    setResult(completion.choices[0].message.content);
+    setResult(completion);
   };
 
   async function handleClick() {

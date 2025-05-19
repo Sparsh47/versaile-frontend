@@ -5,7 +5,7 @@ import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { io } from "socket.io-client";
-import OpenAi from "@/app/components/OpenAi";
+import OpenAi from "@/components/OpenAi";
 import { useRouter } from "next/navigation";
 import hero from "../../../../public/logo1.png";
 import Image from "next/image";

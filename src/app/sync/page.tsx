@@ -43,8 +43,8 @@ export default function Page() {
     }, [user, isSignedIn]);
 
     return (
-        <div>
-            <MoonLoader color="#7752FE" size={100} speedMultiplier={1.5} />
+        <div className="w-full min-h-screen flex items-center justify-center">
+            <MoonLoader color="#7752FE" size={50} speedMultiplier={1.5} />
         </div>
     );
 }

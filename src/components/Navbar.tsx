@@ -20,7 +20,7 @@ const Navbar = () => {
         height={280}
         style={{ cursor: "pointer" }}
         onClick={() => router.push("/")}
-        className="z-[50] mix-blend-multiply"
+        className="absolute left-1/2 -translate-x-1/2 z-[50] mix-blend-multiply"
       />
         <div className="relative right-10">
             <SignedOut>

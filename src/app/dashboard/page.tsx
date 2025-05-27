@@ -32,7 +32,6 @@ export default function Page() {
                 try {
                     const res = await fetch(`http://localhost:8000/api/v1/documents/getAllDocuments/${user.id}`);
                     const data = await res.json();
-                    console.log("DATA: ",data);
                     setRecentDocuments(data.documents);
                 } catch (error) {
                     console.error("Fetch error:", error);

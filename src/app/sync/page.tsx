@@ -34,7 +34,6 @@ export default function Page() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log("User sync response:", data);
                 router.push("/dashboard");
             })
             .catch((err) => {

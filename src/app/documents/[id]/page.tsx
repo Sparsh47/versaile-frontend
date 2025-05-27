@@ -5,16 +5,16 @@ import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { io } from "socket.io-client";
-import OpenAi from "@/app/components/OpenAi";
+import OpenAi from "@/components/OpenAi";
 import { useRouter } from "next/navigation";
 import hero from "../../../../public/logo1.png";
 import Image from "next/image";
 import HashLoader from "react-spinners/HashLoader";
 import * as quillToWord from "quill-to-word";
 import { saveAs } from "file-saver";
-import { Button } from "@/components/ui/button";
+import {useUser} from "@clerk/nextjs";
 
-const TextEditor = ({ params }) => {
+const TextEditor = ({ params }: {params: {id: string}}) => {
   const router = useRouter();
 
   const { id } = params;
@@ -31,10 +31,11 @@ const TextEditor = ({ params }) => {
   ];
 
   const [socket, setSocket] = useState();
-  const [quill, setQuill] = useState();
+  const [quill, setQuill] = useState<Quill | null>(null);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [docs, setDoc] = useState();
+  const {user, isLoaded} = useUser();
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +48,7 @@ const TextEditor = ({ params }) => {
       return;
     }
     async function getDoc() {
-      const delta = quill.getContents();
+      const delta = quill?.getContents();
       const doc = await quillToWord.generateWord(delta, {
         exportAs: "blob",
       });
@@ -82,7 +83,8 @@ const TextEditor = ({ params }) => {
   }, [socket, quill, id]);
 
   useEffect(() => {
-    const s = io("https://versaile-api-v1-0-0.onrender.com/");
+    // const s = io("https://versaile-api-v1-0-0.onrender.com/");
+    const s = io("http://localhost:8000/")
     setSocket(s);
 
     if (socket) {
@@ -141,6 +143,27 @@ const TextEditor = ({ params }) => {
       setQuill(q);
     }
   }, []);
+
+  // useEffect(()=>{
+  //   if(!isLoaded || !user) return;
+  //   (async () => {
+  //     try{
+  //       const res = await fetch(`http://localhost:8000/api/v1/documents/addDocument/${user.id}`, {
+  //         method: "PATCH",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           documentId: id
+  //         })
+  //       })
+  //       const data = await res.json();
+  //       console.log(data.message);
+  //     }catch(e: any){
+  //       console.log("Error adding document to user: ", e);
+  //     }
+  //   })();
+  // }, [isLoaded, user])
 
   const saveFile = () => {
     saveAs(docs, "word-export.docx");

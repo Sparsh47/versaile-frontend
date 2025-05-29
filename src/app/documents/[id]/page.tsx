@@ -83,8 +83,7 @@ const TextEditor = ({ params }: {params: {id: string}}) => {
   }, [socket, quill, id]);
 
   useEffect(() => {
-    // const s = io("https://versaile-api-v1-0-0.onrender.com/");
-    const s = io("http://localhost:8000/")
+    const s = io("https://versaile-api-v1-0-0.onrender.com/");
     setSocket(s);
 
     if (socket) {
@@ -143,27 +142,6 @@ const TextEditor = ({ params }: {params: {id: string}}) => {
       setQuill(q);
     }
   }, []);
-
-  // useEffect(()=>{
-  //   if(!isLoaded || !user) return;
-  //   (async () => {
-  //     try{
-  //       const res = await fetch(`http://localhost:8000/api/v1/documents/addDocument/${user.id}`, {
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           documentId: id
-  //         })
-  //       })
-  //       const data = await res.json();
-  //       console.log(data.message);
-  //     }catch(e: any){
-  //       console.log("Error adding document to user: ", e);
-  //     }
-  //   })();
-  // }, [isLoaded, user])
 
   const saveFile = () => {
     saveAs(docs, "word-export.docx");

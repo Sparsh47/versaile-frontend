@@ -25,21 +25,23 @@ export default function Page() {
     };
 
     useEffect(() => {
-        if (!isLoaded) return;
+        if (!isLoaded || !user || !isSignedIn) return;
 
-        (async () => {
-            if (user && isSignedIn) {
-                try {
-                    const res = await fetch(`http://localhost:8000/api/v1/documents/getAllDocuments/${user.id}`);
-                    const data = await res.json();
-                    setRecentDocuments(data.documents);
-                } catch (error) {
-                    console.error("Fetch error:", error);
-                }
-            } else {
-                console.warn("User not signed in or undefined.");
+        const fetchDocuments = async () => {
+            try {
+                const res = await fetch(`http://localhost:8000/api/v1/documents/getAllDocuments/${user.id}`);
+                const data = await res.json();
+                setRecentDocuments(data.documents);
+            } catch (error) {
             }
-        })();
+        };
+
+        fetchDocuments();
+
+        const interval = setInterval(fetchDocuments, 10000);
+
+        return () => clearInterval(interval);
+
     }, [user, isSignedIn, isLoaded]);
 
         return (

@@ -18,18 +18,15 @@ export default function Home() {
   return (
         <div className="relative overflow-hidden min-h-screen">
             <div
-                className="absolute w-[800px] h-[800px] bg-[#7752FE] rounded-full top-[-300px] left-[-200px] z-[-20]"
-                style={{ filter: "blur(150px)" }}
+                className="absolute w-[800px] h-[800px] bg-[#7752FE] rounded-full top-[-300px] left-[-200px] z-[-20] blur-[150px]"
             ></div>
 
             <div
-                className="absolute w-[800px] h-[800px] bg-[#7752FE] rounded-full top-[600px] right-[100px] z-[-20]"
-                style={{ filter: "blur(150px)" }}
+                className="absolute w-[800px] h-[800px] bg-[#7752FE] rounded-full top-[600px] right-[100px] z-[-20] blur-[150px]"
             ></div>
 
             <div
-                className="absolute w-[300px] h-[300px] bg-[#7752FE] rounded-full bottom-[-500px] left-[10px] z-[-20]"
-                style={{ filter: "blur(130px)" }}
+                className="absolute w-[300px] h-[300px] bg-[#7752FE] rounded-full bottom-[-500px] left-[10px] z-[-20] blur-[130px]"
             ></div>
       <Navbar />
       <main
@@ -62,7 +59,7 @@ export default function Home() {
           </div>
         </div>
           <div
-              className="flex w-full items-center space-x-2 rounded-[100px]  border border-gray-600 pr-[5px]"
+              className="md:hidden flex w-full items-center space-x-2 rounded-[100px]  border border-gray-600 pr-[5px]"
               style={{
                   boxShadow: "2px 4px 12px rgba(0, 0, 0, 0.2)",
               }}

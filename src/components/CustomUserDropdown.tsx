@@ -8,8 +8,6 @@ export default function CustomUserDropdown() {
     const { signOut } = useClerk();
     const [open, setOpen] = useState(false);
 
-    console.log("USER: ", user);
-
     return (
         <div className="relative">
             <img

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import logo from "../../public/logo1.png";
-import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
+import {SignedIn, SignedOut, SignInButton, SignUpButton} from "@clerk/nextjs";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
@@ -22,7 +22,6 @@ const Navbar = () => {
               alt="logo"
               width={280}
               height={180}
-              style={{ cursor: "pointer" }}
               className="z-[50] h-16 w-auto mix-blend-multiply"
           />
       </Link>
@@ -69,11 +68,6 @@ const Navbar = () => {
             <SignedIn>
                 <div className="flex items-center justify-center gap-3">
                     <Link href="/dashboard" className="text-sm sm:text-base font-medium">Dashboard</Link>
-                    {/*<UserButton appearance={{*/}
-                    {/*    elements: {*/}
-                    {/*        userButtonAvatarBox: "w-9 h-9 sm:w-10 sm:h-10"*/}
-                    {/*    }*/}
-                    {/*}} />*/}
                     <CustomUserDropdown />
                 </div>
             </SignedIn>

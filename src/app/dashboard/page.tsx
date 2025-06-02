@@ -2,8 +2,6 @@
 
 import {PlusCircledIcon} from "@radix-ui/react-icons";
 import DashboardNavbar from "@/components/DashboardNavbar";
-import Link from "next/link";
-import { v4 as uuidV4 } from "uuid";
 import {useEffect, useState} from "react";
 import {useUser} from "@clerk/nextjs";
 import {useRouter} from "next/navigation";
@@ -56,30 +54,41 @@ export default function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-w-7xl py-5 px-10 xl:px-0">
-                        <h3 className="text-lg font-medium">Recent Documents</h3>
-                        {recentDocuments.length > 0 ? <div className="w-full flex flex-col">
-                            <div className="w-full max-w-7xl flex items-center gap-8 flex-wrap">
+                    <div className="w-full max-w-7xl py-5 px-4 sm:px-6 lg:px-0">
+                        <h3 className="text-lg font-medium mb-4">Recent Documents</h3>
+                        {recentDocuments.length > 0 ? (
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                                 {recentDocuments.map((doc) => (
                                     <PreviewDocumentCard key={doc._id} document={doc} />
                                 ))}
                             </div>
-                        </div> : <div className="w-full h-[400px] flex items-center justify-center">
-                            <p>No Documents Found!</p>
-                        </div>}
+                        ) : (
+                            <div className="w-full h-[400px] flex items-center justify-center">
+                                <p>No Documents Found!</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </>
     );
 }
 
-function DocumentCard({onCreate}: {onCreate: ()=>void}) {
+function DocumentCard({ onCreate }: { onCreate: () => void }) {
     return (
-        <button onClick={onCreate} className="flex flex-col gap-2">
-            <div className="cursor-pointer group w-[180px] h-[230px] bg-white border-[1px] border-[rgba(0,0,0,0.15)] flex items-center justify-center rounded-sm hover:border-blue-400 duration-200 transition-all ease-in-out">
-                <PlusCircledIcon className="w-8 h-8 text-[rgba(0,0,0,0.15)] group-hover:text-blue-400 duration-200 transition-all ease-in-out" />
+        <button
+            onClick={onCreate}
+            className="flex flex-col gap-2 w-full max-w-xs sm:max-w-none"
+            style={{ maxWidth: '280px' }}
+        >
+            <div
+                className="cursor-pointer group w-full bg-white border border-[rgba(0,0,0,0.15)] rounded-sm hover:border-blue-400 transition-all ease-in-out"
+                style={{ aspectRatio: '4 / 5' }}
+            >
+                <div className="flex items-center justify-center w-full h-full">
+                    <PlusCircledIcon className="w-8 h-8 text-[rgba(0,0,0,0.15)] group-hover:text-blue-400 transition-all ease-in-out" />
+                </div>
             </div>
-            <p className="font-medium cursor-default select-none">Blank Document</p>
+            <p className="font-medium cursor-default select-none text-left">Blank Document</p>
         </button>
-    )
+    );
 }

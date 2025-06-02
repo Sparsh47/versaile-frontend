@@ -7,6 +7,7 @@ import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import {useState} from "react";
+import CustomUserDropdown from "@/components/CustomUserDropdown";
 
 const Navbar = () => {
 
@@ -68,11 +69,12 @@ const Navbar = () => {
             <SignedIn>
                 <div className="flex items-center justify-center gap-3">
                     <Link href="/dashboard" className="text-sm sm:text-base font-medium">Dashboard</Link>
-                    <UserButton appearance={{
-                        elements: {
-                            userButtonAvatarBox: "w-9 h-9 sm:w-10 sm:h-10"
-                        }
-                    }} />
+                    {/*<UserButton appearance={{*/}
+                    {/*    elements: {*/}
+                    {/*        userButtonAvatarBox: "w-9 h-9 sm:w-10 sm:h-10"*/}
+                    {/*    }*/}
+                    {/*}} />*/}
+                    <CustomUserDropdown />
                 </div>
             </SignedIn>
         </div>

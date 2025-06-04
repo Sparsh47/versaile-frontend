@@ -66,10 +66,7 @@ const Navbar = () => {
                 </div>
             </SignedOut>
             <SignedIn>
-                <div className="flex items-center justify-center gap-3">
-                    <Link href="/dashboard" className="text-sm sm:text-base font-medium">Dashboard</Link>
-                    <CustomUserDropdown />
-                </div>
+                <CustomUserDropdown />
             </SignedIn>
         </div>
     </nav>

@@ -22,13 +22,14 @@ body {
   height: 55px;
   background-color: #fafafa;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centers the toolbar content horizontally */
   align-items: center;
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%; /* Ensures the toolbar takes up full width */
 }
 
 @page {
@@ -49,5 +50,64 @@ body {
   }
   .ql-toolbar.ql-snow {
     display: none;
+  }
+}
+
+@media (max-width: 856px) {
+  .ql-editor {
+    width: calc(100vw - 1rem);
+    padding: 0.5in;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .ql-toolbar.ql-snow {
+    justify-content: center; /* Center the toolbar on small screens */
+    align-items: center;
+    overflow-x: auto;
+    padding: 10px;
+    height: auto;
+    min-height: 55px;
+    top: 50px; /* Adjust top position for smaller screens */
+  }
+
+  .ql-toolbar .ql-formats {
+    display: flex;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+    align-items: center;
+  }
+
+  .ql-toolbar .ql-formats:last-child {
+    margin-right: 0;
+  }
+
+  .ql-toolbar button,
+  .ql-toolbar .ql-picker {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .ql-container {
+    width: 100%;
+  }
+
+  .ql-toolbar::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .ql-toolbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .ql-toolbar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+  }
+
+  .ql-toolbar::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
   }
 }

@@ -18,7 +18,7 @@ export default function Page() {
         const syncUser = () => {
             const authProvider = user.externalAccounts?.[0]?.provider || "email";
 
-            fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/sync-user`, {
+            fetch(`https://versaile-api-v1-0-0.onrender.com/api/v1/auth/sync-user`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

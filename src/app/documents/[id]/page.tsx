@@ -87,7 +87,7 @@ const TextEditor = ({ params }: { params: { id: string } }) => {
   }, [socket, quill, id]);
 
   useEffect(() => {
-    const s = io(`${process.env.NEXT_PUBLIC_BACKEND_URL}/`);
+    const s = io(`https://versaile-api-v1-0-0.onrender.com/`);
     setSocket(s);
     return () => {
       s.disconnect();

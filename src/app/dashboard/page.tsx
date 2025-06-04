@@ -15,8 +15,7 @@ export default function Page() {
 
     const handleCreate = async () => {
         const res = await fetch(
-            // `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/documents/createDocument/${user?.id}`,
-            `https://versaile-api-v1-0-0.onrender.com/api/v1/documents/createDocument/${user?.id}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/documents/createDocument/${user?.id}`,
             { method: "POST" }
         );
         const { documentId } = await res.json();
@@ -28,8 +27,7 @@ export default function Page() {
 
         const fetchDocuments = async () => {
             try {
-                // const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/documents/getAllDocuments/${user.id}`);
-                const res = await fetch(`https://versaile-api-v1-0-0.onrender.com/api/v1/documents/getAllDocuments/${user.id}`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/documents/getAllDocuments/${user.id}`);
                 const data = await res.json();
                 setRecentDocuments(data.documents);
             } catch (error) {

@@ -34,9 +34,9 @@ export default function Page() {
         }
     }, [backendReady]);
 
-    return (
-        <>
-            {show ? <Home /> : <Game isReady={backendReady} show={setShow} />}
-        </>
-    );
+    if (backendReady || show) {
+        return <Home />;
+    }
+
+    return <Game isReady={backendReady} show={setShow} />;
 }

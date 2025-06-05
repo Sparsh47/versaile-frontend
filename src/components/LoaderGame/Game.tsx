@@ -127,7 +127,7 @@ export default function Game({
 
             <div className="relative z-10 flex flex-col items-center mb-6">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-indigo-800 text-center">
-                    Play this game while we get your backend ready
+                    {isReady ? "Click the button below to go to the main website" : "Play this game while we get your backend ready"}
                 </h1>
             </div>
 
@@ -210,7 +210,7 @@ export default function Game({
                         className="py-2 sm:py-3 px-6 sm:px-8 bg-violet-600 hover:bg-violet-700 text-white text-sm sm:text-base md:text-lg"
                         onClick={() => show(true)}
                     >
-                        Backend is ready
+                        Go to website
                     </Button>
                 )}
             </div>

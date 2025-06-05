@@ -42,6 +42,7 @@ const OpenAi = ({ text, save, savePdf }: { text: string; save: () => void, saveP
   const [userInput, setUserInput] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const FetchAI = async (prompt: string) => {
     const message = `${prompt}\n${userInput}`;
@@ -50,6 +51,10 @@ const OpenAi = ({ text, save, savePdf }: { text: string; save: () => void, saveP
   };
 
   async function handleClick() {
+    if(userInput.trim().length === 0) {
+      setError("Give a prompt to see some result.");
+      return;
+    }
     setResult("");
     setLoading(true);
     await FetchAI(text);
@@ -86,6 +91,7 @@ const OpenAi = ({ text, save, savePdf }: { text: string; save: () => void, saveP
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                 />
+                {error.trim().length>0 && <p className="text-red-500 text-sm font-medium">{error}</p>}
               </div>
             </div>
             <SheetFooter>

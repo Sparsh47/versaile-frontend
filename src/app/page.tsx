@@ -11,12 +11,16 @@ export default function Page() {
 
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
-        if(backendReady) {
+
+        if (backendReady) {
             return;
         }
+
         async function checkBackend() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/health`);
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/health`
+                );
                 const json = await res.json();
                 if (json.ready) {
                     setBackendReady(true);
@@ -31,7 +35,7 @@ export default function Page() {
 
         return () => {
             clearInterval(intervalId);
-        }
+        };
     }, [backendReady]);
 
     if (backendReady || show) {

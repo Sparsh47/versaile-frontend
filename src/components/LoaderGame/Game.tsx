@@ -1,5 +1,3 @@
-"use client";
-
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { shuffleArray } from "@/lib/utils";
@@ -10,7 +8,7 @@ const LOADER_TEXTS = [
     "Gathering your documents...",
     "Optimizing collaboration tools...",
     "Loading AI editing engine...",
-    "Almost there..."
+    "Almost there...",
 ];
 
 export default function Game({
@@ -33,7 +31,9 @@ export default function Game({
     const [poolWords, setPoolWords] = useState<string[]>([]);
     const [slots, setSlots] = useState<(string | null)[]>([]);
     const [score, setScore] = useState(0);
-    const [feedback, setFeedback] = useState<"none" | "correct" | "incorrect">("none");
+    const [feedback, setFeedback] = useState<"none" | "correct" | "incorrect">(
+        "none"
+    );
 
     useEffect(() => {
         const shuffled = shuffleArray(SENTENCES);
@@ -53,6 +53,7 @@ export default function Game({
         if (feedback === "correct") return;
         const firstEmpty = slots.indexOf(null);
         if (firstEmpty === -1) return;
+
         setSlots((prev) => {
             const next = [...prev];
             next[firstEmpty] = word;
@@ -69,6 +70,7 @@ export default function Game({
         if (feedback === "correct") return;
         const word = slots[slotIndex];
         if (!word) return;
+
         setSlots((prev) => {
             const next = [...prev];
             next[slotIndex] = null;
@@ -81,11 +83,14 @@ export default function Game({
         if (!shuffledSentences.length) return;
         if (slots.length === 0) return;
         if (slots.includes(null)) return;
+
         const originalWords = shuffledSentences[currentIndex].split(" ");
         const allCorrect = slots.every((w, i) => w === originalWords[i]);
+
         if (allCorrect) {
             setFeedback("correct");
             setScore((s) => s + 1);
+
             setTimeout(() => {
                 const nextIndex = currentIndex + 1;
                 if (nextIndex < shuffledSentences.length) {
@@ -127,7 +132,9 @@ export default function Game({
 
             <div className="relative z-10 flex flex-col items-center mb-6">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-indigo-800 text-center">
-                    {isReady ? "Click the button below to go to the main website" : "Play this game while we get your backend ready"}
+                    {isReady
+                        ? "Click the button below to go to the main website"
+                        : "Play this game while we get your backend ready"}
                 </h1>
             </div>
 
@@ -168,7 +175,8 @@ export default function Game({
                         <button
                             key={idx}
                             onClick={() => handleSlotTap(idx)}
-                            disabled={!slots[idx] || feedback === "correct" || !isReady}
+                            // Removed `!isReady` from the `disabled` check
+                            disabled={!slots[idx] || feedback === "correct"}
                             className={`min-w-[4.5rem] sm:min-w-[5.5rem] md:min-w-[6rem] px-3 sm:px-4 md:px-5 py-2 sm:py-3 border-2 rounded-lg ${
                                 word ? baseBg : "border-dashed border-violet-300"
                             } text-center font-medium text-indigo-800 transform`}
@@ -190,7 +198,7 @@ export default function Game({
                     <button
                         key={idx}
                         onClick={() => handlePoolTap(word, idx)}
-                        disabled={feedback === "correct" || !isReady}
+                        disabled={feedback === "correct"}
                         className="bg-indigo-200 hover:bg-indigo-300 px-3 sm:px-4 md:px-5 py-2 sm:py-3 rounded-lg text-sm sm:text-base md:text-lg font-medium text-indigo-900 transform hover:scale-105"
                         style={{ transform: `rotate(${getRandomAngle()})` }}
                     >
